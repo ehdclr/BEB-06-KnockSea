@@ -70,6 +70,7 @@ module.exports = {
   //TODO(v) : GET요청 모든 minting한 list
   //find() : 전체 데이터 불러오기
   //forEach 사용
+
   get: (rea, res) => {
     const test = NftMeta.find({}, (err, result) => {
       if (!result) {
