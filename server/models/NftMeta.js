@@ -14,6 +14,9 @@ const NftMetaSchema = mongoose.Schema({
   description: {
     type: String,
   },
+  imageUrl: {
+    type: String,
+  },
   createAt: {
     type: Date,
     defualt: Date.now,

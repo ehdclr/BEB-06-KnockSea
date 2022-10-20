@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { mintingController } = require("../controller/index.js");
+const {
+  mintingController,
+  usersController,
+} = require("../controller/index.js");
 
-//action : 민팅
-router.post("/minting", mintingController.post);
+router.post("/users/minting", mintingController.post);
+router.get("/users/mypage", usersController.get);
 
-// router.get("/users/mypage", usersController.get);
+router.get("/nftlist", mintingController.get);
 
 // router.post()
 

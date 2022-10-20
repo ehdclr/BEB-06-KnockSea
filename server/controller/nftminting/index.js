@@ -33,6 +33,7 @@ module.exports = {
           );
           NftMeta.create({
             tokenId: tokenId,
+            imageUrl: imageUrl,
             name: name,
             description: description,
           });
@@ -53,6 +54,7 @@ module.exports = {
           //TODO(v) : 새로 민팅시 메타데이터 스키마에 저장
           NftMeta.create({
             tokenId: tokenId,
+            imageUrl: imageUrl,
             name: name,
             description: description,
           });
@@ -63,5 +65,18 @@ module.exports = {
       console.log(err);
       return res.status(500).json({ success: false, message: "server Error" });
     }
+  },
+
+  //TODO(v) : GET요청 모든 minting한 list
+  //find() : 전체 데이터 불러오기
+  //forEach 사용
+  get: (rea, res) => {
+    const test = NftMeta.find({}, (err, result) => {
+      if (!result) {
+        return res.status(401).json({ success: false });
+      } else if (result) {
+        return res.status(201).json({ success: true, tokenlist: result });
+      }
+    });
   },
 };
