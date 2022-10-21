@@ -4,7 +4,10 @@ const NftMeta = require("../../models/NftMeta");
 module.exports = {
   post: async (req, res) => {
     // TODO( ) :imageURL req.files로 받아올 수 있게 프론트 formData 요청
+    // TODO( ) : ipfs 라이브러리 사용해서 req.files로 넘어온 이미지 데이터 ipfs 에 업로드
     // TODO( ) : req.files로 받은 image를 ipfs.add로 ipfs에 올리기
+    // TODO( ) : 지갑의 종류도 req.body로 받아오기
+    // 모든 것 세션 유지
     const { account, tokenId, imageUrl, name, description } = req.body;
     try {
       //TODO(v) NFT 데이터들을 DATABASE에 저장하는 코드 작성 -- 민팅

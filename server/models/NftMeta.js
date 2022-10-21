@@ -2,6 +2,7 @@
 //API 서버 따로 만들 것인지?
 const mongoose = require("mongoose");
 
+//민팅한 모든 NFT 이미지 목록 불러오는 메타 데이터
 const NftMetaSchema = mongoose.Schema({
   tokenId: {
     type: String,
