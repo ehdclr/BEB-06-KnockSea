@@ -1,7 +1,10 @@
 const Nft = require("../../models/Nft");
+const NftMeta = require("../../models/NftMeta");
 
 module.exports = {
   post: async (req, res) => {
+    // TODO( ) :imageURL req.files로 받아올 수 있게 프론트 formData 요청
+    // TODO( ) : req.files로 받은 image를 ipfs.add로 ipfs에 올리기
     const { account, tokenId, imageUrl, name, description } = req.body;
     try {
       //TODO(v) NFT 데이터들을 DATABASE에 저장하는 코드 작성 -- 민팅
@@ -22,12 +25,18 @@ module.exports = {
             },
             (err, result) => {
               if (err) console.log(err);
-              //TODO(): 사용자 민팅시 metaData 스키마로 저장하도록 코드 작성
+              //TODO(v): 사용자 민팅시 metaData 스키마로 저장하도록 코드 작성
               return res
                 .status(200)
                 .json({ success: true, message: "추가 완료." });
             }
           );
+          NftMeta.create({
+            tokenId: tokenId,
+            imageUrl: imageUrl,
+            name: name,
+            description: description,
+          });
 
           //지갑에 토큰을 가지고 있지 않는 경우, 새로 토큰을 얻을 때,
         } else if (!wallet) {
@@ -42,7 +51,13 @@ module.exports = {
               },
             ],
           });
-          //TODO() : 새로민팅시 메타데이터 스키마에 저장
+          //TODO(v) : 새로 민팅시 메타데이터 스키마에 저장
+          NftMeta.create({
+            tokenId: tokenId,
+            imageUrl: imageUrl,
+            name: name,
+            description: description,
+          });
           return res.status(200).json({ success: true, message: "생성 완료." });
         }
       });
@@ -50,5 +65,19 @@ module.exports = {
       console.log(err);
       return res.status(500).json({ success: false, message: "server Error" });
     }
+  },
+
+  //TODO(v) : GET요청 모든 minting한 list
+  //find() : 전체 데이터 불러오기
+  //forEach 사용
+
+  get: (rea, res) => {
+    const test = NftMeta.find({}, (err, result) => {
+      if (!result) {
+        return res.status(401).json({ success: false });
+      } else if (result) {
+        return res.status(201).json({ success: true, tokenlist: result });
+      }
+    });
   },
 };
