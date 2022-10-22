@@ -13,6 +13,7 @@ function Main() {
             <div className="description">
               OpenSea is the worlds first and largest NFT marketplace
             </div>
+            <button></button>
             {/* <div className="ctaContainer">
               <Link to="/explore">
                 <div className="accentedButton">Explore</div>

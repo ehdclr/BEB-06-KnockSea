@@ -1,0 +1,41 @@
+#nft-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding: 1.5rem;
+  margin: 0.5rem;
+}
+
+.nft-image {
+  margin-left: 3rem;
+}
+.nft-info {
+  float: right;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding: 1rem;
+  width: 600px;
+  height: 500px;
+  background: #ffffff;
+  border: solid rgb(238, 238, 238) 0.2rem;
+}
+
+.nft-button-component {
+  font: inherit;
+  border: 1px solid #0b4475;
+  border-radius: 10px;
+  background: #0b4475;
+  color: white;
+  padding: 12px 20px;
+  cursor: pointer;
+  margin: 0.3rem 0.2rem;
+}
+
+.nft-button-component:hover,
+.nft-button-component:active {
+  background: #0a76d4;
+  border-color: #0a76d4;
+}
+
+.nft-button-component:focus {
+  outline: none;
+}
