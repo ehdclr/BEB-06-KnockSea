@@ -4,6 +4,7 @@ const {
   mintingController,
   usersInfoController,
   usersController,
+  dealController,
 } = require("../controller/index.js");
 
 const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth");
@@ -21,5 +22,9 @@ router.post("/users/login", isNotLoggedIn, usersController.login.post);
 
 //로그아웃(로그인한 상태)
 router.get("/users/logout", isLoggedIn, usersController.logout.get);
+
+//판매(로그인한 상태)
+//테스트중 로그인 안한상태로 냅두기
+router.post("/deal/sell", isNotLoggedIn, dealController.sell.post);
 
 module.exports = router;

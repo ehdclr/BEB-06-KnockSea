@@ -1,4 +1,4 @@
-const Nft = require("../../models/Nft");
+const User = require("../../models/User");
 const NftMeta = require("../../models/NftMeta");
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     try {
       //TODO(v) NFT 데이터들을 DATABASE에 저장하는 코드 작성 -- 민팅
 
-      Nft.findOne({ account: account }, (req, wallet) => {
+      User.findOne({ account: account }, (req, wallet) => {
         //이미 토큰을 보유한 지갑 사용자면, push 하도록 하기
         if (wallet) {
           newToken = {
@@ -21,7 +21,7 @@ module.exports = {
             name: name,
             description: description,
           };
-          Nft.updateOne(
+          User.updateOne(
             { tokenId: wallet.tokenId },
             {
               $push: { tokenList: newToken },
@@ -43,7 +43,7 @@ module.exports = {
 
           //지갑에 토큰을 가지고 있지 않는 경우, 새로 토큰을 얻을 때,
         } else if (!wallet) {
-          Nft.create({
+          User.create({
             account: account,
             tokenList: [
               {

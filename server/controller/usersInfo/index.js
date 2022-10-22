@@ -1,4 +1,4 @@
-const Nft = require("../../models/Nft");
+const User = require("../../models/User");
 
 module.exports = {
   /**
@@ -15,7 +15,7 @@ module.exports = {
     const account = req.query;
     console.log(account.userId);
     try {
-      Nft.findOne({ account: account.userId }, (err, userInfo) => {
+      User.findOne({ account: account.userId }, (err, userInfo) => {
         if (userInfo) {
           return res.status(201).json({
             success: true,
