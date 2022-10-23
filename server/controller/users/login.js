@@ -11,8 +11,10 @@ module.exports = {
     const { account, active } = req.body;
 
     //만약 지갑이 존재하고, 연결이 되어 있다면,
+
     if (active && account) {
       //세션 만듦
+
       req.session.userId = account;
 
       return res.status(201).json({ success: true, msg: "로그인 성공" });

@@ -14,6 +14,7 @@ function Nav() {
         .post("http://localhost:5000/users/login", { account, active })
         .then((response) => {
           console.log(response);
+          localStorage.setItem("userId", account);
         });
     }
   }, [account, active]);
@@ -44,6 +45,7 @@ function Nav() {
       console.log(response);
       if (response.data.success) {
         setActive(false);
+        localStorage.removeItem("userId");
       }
     });
   };

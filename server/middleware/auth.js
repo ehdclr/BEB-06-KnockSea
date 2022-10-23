@@ -1,5 +1,6 @@
 module.exports = {
   isLoggedIn: (req, res, next) => {
+    console.log("req", req.session);
     if (req.session.userId) {
       next(); //로그인 되면 next
     } else {
