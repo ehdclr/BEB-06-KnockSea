@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Web3 from "web3";
-import Modal from "../UI/Modal";
+import Modal from "../util/Modal";
 import "../assets/Input.css";
 
 const TransferNFT = (props) => {

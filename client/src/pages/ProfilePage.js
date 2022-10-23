@@ -42,7 +42,7 @@ const NFTdata = [
   },
 ];
 
-function Profile() {
+function ProfilePage() {
   /* 
 
 const Profile = ({account, web3}) => {  
@@ -162,4 +162,4 @@ const Profile = ({account, web3}) => {
   }
 }
 
-export default Profile;
+export default ProfilePage;

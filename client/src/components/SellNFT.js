@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../UI/Modal";
+import Modal from "../util/Modal";
 import "../assets/Input.css";
 
 const SellNFT = (props) => {

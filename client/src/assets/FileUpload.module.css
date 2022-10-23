@@ -1,0 +1,10 @@
+.Image {
+  margin: 1rem auto;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 10px solid #ccc;
+  border-radius: 20px;
+}

@@ -1,8 +1,9 @@
 import Nav from "./components/Nav";
 import Main from "./components/Main";
-import Profile from "./pages/Profile";
+import ProfilePage from "./pages/ProfilePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NFTpage from "./pages/NFTpage";
+import MintingPage from "./pages/MintingPage";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Routes>
           {/* 2. component -> element, element형태로 넘겨야함 <Home /> */}
           <Route path="/" element={<Main />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/nftpage" element={<NFTpage />} />
+          <Route path="/create" element={<MintingPage />} />
           {/* <Route path="/trade" element={<Trade />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/stats" element={<Stats />} />

@@ -1,9 +1,9 @@
-import Modal from "../UI/Modal";
+import Modal from "../util/Modal";
 import "../assets/Button.css";
 
 const BuyNFT = (props) => {
   //지갑 연결여부 확인
-  //지갑으로 buy 함수 실행 요청(useEffect 사용)
+  //지갑으로 buy 함수 실행 요청(useEffect 사용?)
 
   return (
     <Modal onClose={props.onClose}>
