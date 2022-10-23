@@ -25,6 +25,6 @@ router.get("/users/logout", isLoggedIn, usersController.logout.get);
 
 //판매(로그인한 상태)
 //테스트중 로그인 안한상태로 냅두기
-router.post("/deal/sell", isNotLoggedIn, dealController.sell.post);
+router.post("/deal/sell", isLoggedIn, dealController.sell.post);
 
 module.exports = router;

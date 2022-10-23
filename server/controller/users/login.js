@@ -13,13 +13,8 @@ module.exports = {
     //만약 지갑이 존재하고, 연결이 되어 있다면,
     if (active && account) {
       //세션 만듦
-      req.session.user = {
-        userId: account,
-        KnockSea_loggedOut: false,
-      };
-      let logged_value = true;
-      console.log(req.session.user);
-      res.Cookie("is_loggedIn", logged_value);
+      req.session.userId = account;
+
       return res.status(201).json({ success: true, msg: "로그인 성공" });
     }
   },

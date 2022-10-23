@@ -15,6 +15,7 @@ app.use(morgan("dev"));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({
+    key: "sid",
     resave: false,
     saveUninitialized: true,
     secret: process.env.COOKIE_SECRET,

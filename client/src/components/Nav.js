@@ -9,11 +9,13 @@ function Nav() {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    axios
-      .post("http://localhost:5000/users/login", { account, active })
-      .then((response) => {
-        console.log(response);
-      });
+    if (account && active) {
+      axios
+        .post("http://localhost:5000/users/login", { account, active })
+        .then((response) => {
+          console.log(response);
+        });
+    }
   }, [account, active]);
 
   //로그인
@@ -40,6 +42,9 @@ function Nav() {
     setAccount(account === "");
     axios.get("http://localhost:5000/users/logout").then((response) => {
       console.log(response);
+      if (response.data.success) {
+        setActive(false);
+      }
     });
   };
 

@@ -1,16 +1,17 @@
 module.exports = {
   isLoggedIn: (req, res, next) => {
-    if (req.session.user) {
+    if (req.session.userId) {
       next(); //로그인 되면 next
     } else {
       res.send("로그인 필요!");
     }
   },
   isNotLoggedIn: (req, res, next) => {
-    if (!req.session) {
-      next(); //로그인 안되어 있으면 next
+    if (!req.session.userId) {
+      next();
     } else {
-      res.send("로그인한 상태입니다!");
+      console.log("isNotLogged!");
+      res.json({ success: false, message: "not authorized" });
     }
   },
 };
