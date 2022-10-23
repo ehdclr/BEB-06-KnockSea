@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import "../assets/Nav.css";
 
 function Nav() {
   const [account, setAccount] = useState("");
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (account && active) {
+      axios
+        .post("http://localhost:5000/users/login", { account, active })
+        .then((response) => {
+          console.log(response);
+        });
+    }
+  }, [account, active]);
+
+  //로그인
   const onClickConnect = async () => {
     try {
       if (window.ethereum) {
@@ -14,6 +28,7 @@ function Nav() {
 
         setAccount(accounts[0]);
         console.log(accounts);
+        setActive(true);
       } else {
         alert("Install Metamask!");
       }
@@ -22,8 +37,15 @@ function Nav() {
     }
   };
 
+  //로그아웃
   const onClickDisConnect = () => {
     setAccount(account === "");
+    axios.get("http://localhost:5000/users/logout").then((response) => {
+      console.log(response);
+      if (response.data.success) {
+        setActive(false);
+      }
+    });
   };
 
   return (
