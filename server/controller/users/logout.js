@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  get: (req, res) => {
+  post: (req, res) => {
     req.session.destroy(); //session 캐쉬 삭제.
     res.clearCookie("sid"); //쿠키 삭제
 

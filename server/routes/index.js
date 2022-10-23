@@ -21,7 +21,7 @@ router.get("/users/mypage", isLoggedIn, usersInfoController.get);
 router.post("/users/login", isNotLoggedIn, usersController.login.post);
 
 //로그아웃(로그인한 상태)
-router.get("/users/logout", isLoggedIn, usersController.logout.get);
+router.post("/users/logout", isLoggedIn, usersController.logout.post);
 
 //판매(로그인한 상태)
 //테스트중 로그인 안한상태로 냅두기
