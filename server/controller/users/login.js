@@ -9,6 +9,7 @@ module.exports = {
     //지갑의 주소와, 월렛의 타입을
     //확인 해야할 것 active 값이 bool값으로 반환이 되는 것인지?
     const { account, active } = req.body;
+
     //만약 지갑이 존재하고, 연결이 되어 있다면,
     if (active && account) {
       //세션 만듦
@@ -16,12 +17,10 @@ module.exports = {
         userId: account,
         KnockSea_loggedOut: false,
       };
-
-      res.setHeader("Set-Cookie", "KnockSea_loggedout=false");
-
+      let logged_value = true;
+      console.log(req.session.user);
+      res.Cookie("is_loggedIn", logged_value);
       return res.status(201).json({ success: true, msg: "로그인 성공" });
-    } else {
-      return res.status(401).json({ success: false, msg: "메타마스크 연결 X" });
     }
   },
 };
