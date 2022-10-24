@@ -3,4 +3,5 @@ module.exports = {
   usersInfoController: require("./usersInfo"),
   usersController: require("./users"),
   dealController: require("./deal"),
+  nftInfoController: require("./nftInfo"),
 };

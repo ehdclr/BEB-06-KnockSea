@@ -8,6 +8,10 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.23.6",
     "axios": "^1.1.3",
+<<<<<<< HEAD
+=======
+    "ipfs-api": "^26.1.2",
+>>>>>>> 8694fc6a5a1c91e2438e5f0f02051ab32a6d2445
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
