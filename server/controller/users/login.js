@@ -17,8 +17,6 @@ module.exports = {
 
       req.session.userId = account;
       req.session.save(function () {
-        console.log(req.session);
-
         return res.status(201).json({ success: true, message: "로그인 성공" });
       });
     } else {

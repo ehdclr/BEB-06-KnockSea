@@ -7,6 +7,7 @@ import "../assets/Nav.css";
 function Nav() {
   const [account, setAccount] = useState("");
   const [active, setActive] = useState(false);
+  const [button, setButton] = useState(false);
 
   useEffect(() => {
     if (account && active) {
@@ -113,7 +114,7 @@ function Nav() {
         </Link>
 
         <div>
-          {account ? (
+          {button ? (
             <div>
               <button
                 className="disconnectedButton"

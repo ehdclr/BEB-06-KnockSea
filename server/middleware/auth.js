@@ -12,7 +12,6 @@ module.exports = {
     if (!req.session.userId) {
       next();
     } else {
-      console.log("isNotLogged!");
       res.json({ success: false, message: "이미 로그인 된 계정입니다." });
     }
   },

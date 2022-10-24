@@ -6,6 +6,7 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 const connection = require("./config");
 const indexRouter = require("./routes/index.js");
+
 dotenv.config();
 
 const app = express();

@@ -3,14 +3,18 @@ import "../assets/MintingPage.css";
 import BlankImage from "../assets/img/uploadImage.png";
 import axios from "axios";
 
+//
+
 const MintingPage = () => {
   //input 값 상태관리
+
   const [metadata, setMetadata] = useState({
     name: "",
     desc: "",
     src: "",
   });
   const account = localStorage.getItem("userId");
+
   // const { name, desc, src } = metadata;
 
   const onChange = (e) => {
@@ -30,7 +34,9 @@ const MintingPage = () => {
   };
 
   const uploadImage = (e) => {
+    e.preventDefault();
     const url = URL.createObjectURL(e.target.files[0]);
+
     setImgFile(url);
     setMetadata({
       ...metadata,
