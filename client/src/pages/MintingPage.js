@@ -1,6 +1,7 @@
 import React, { useState, useRef, useMemo } from "react";
 import "../assets/MintingPage.css";
 import BlankImage from "../assets/img/uploadImage.png";
+import axios from "axios";
 
 const MintingPage = () => {
   //input 값 상태관리
@@ -9,7 +10,7 @@ const MintingPage = () => {
     desc: "",
     src: "",
   });
-
+  const account = localStorage.getItem("userId");
   // const { name, desc, src } = metadata;
 
   const onChange = (e) => {
@@ -26,7 +27,6 @@ const MintingPage = () => {
 
   const handleClickFileInput = (e) => {
     fileInputRef.current.click();
-    console.log(imgFile);
   };
 
   const uploadImage = (e) => {
@@ -50,15 +50,36 @@ const MintingPage = () => {
 
   //create 버튼 클릭
   const createHandler = (e) => {
+    let formData = new FormData();
+    formData.append("file", imgFile);
+    console.log("이미지파일", imgFile);
     console.log(metadata);
+    console.log(formData);
+    //여기서 formData처리와 axios 처리를 해야함
+    let body = {
+      ...metadata,
+      account,
+    };
+
+    // axios
+    //   .post(
+    //     "http://localhost:5000/users/minting",
+    //     { formData, body },
+    //     { withCredentials: true }
+    //   )
+    //   .then((response) => {
+    //     console.log(response);
+    //   });
   };
 
   return (
     <React.Fragment>
       <h1 className="minting-title">Create New Item</h1>
       <h2 className="minting-subtitle">NFT Image Upload</h2>
+
       <div>
         {showImage}
+
         <input
           name="src"
           type="file"
@@ -82,7 +103,7 @@ const MintingPage = () => {
       <div>
         <textarea name="desc" className="form" onChange={onChange} />
       </div>
-      <button className="button" onClick={createHandler}>
+      <button type="submit" className="button" onClick={createHandler}>
         Create
       </button>
     </React.Fragment>
