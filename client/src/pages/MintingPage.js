@@ -1,5 +1,4 @@
 import React, { useState, useRef, useMemo } from "react";
-import axios from "axios";
 import "../assets/MintingPage.css";
 import BlankImage from "../assets/img/uploadImage.png";
 import axios from "axios";
