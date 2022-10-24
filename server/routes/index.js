@@ -37,5 +37,5 @@ router.post("/deal/sell", isLoggedIn, dealController.sell.post);
 //토큰 디테일
 //메인페이지에서 들어가는 방법 , 마이페이지에서 클릭해서 들어가는 방법
 router.get("/nftlist/nftdetail/:tokenId", nftInfoController.detail.get);
-
+//axios /nftlist/nftdetail/:tokenId${tokenId}
 module.exports = router;

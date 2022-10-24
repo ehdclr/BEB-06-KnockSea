@@ -12,14 +12,9 @@ module.exports = {
     const tokenId = req.params.tokenId;
     console.log(tokenId);
     //해당 토큰 id로 검색하여
-    const owner = await User.findOne(
-      {
-        tokenList: { $elemMatch: { tokenId: `${tokenId}` } },
-      }
-      //   (err, res) => {
-      //     console.log("앙앙", res);
-      //   }
-    );
+    const owner = await User.findOne({
+      tokenList: { $elemMatch: { tokenId: `${tokenId}` } },
+    });
     console.log(owner.account);
 
     const nftInfo = await Nftmeta.findOne({ tokenId: tokenId });

@@ -1,7 +1,6 @@
 const User = require("../../models/User");
 const NftMeta = require("../../models/NftMeta");
 // const { urlToBuffer } = require("./imageBuffer");
-const { create, urlSource } = require("ipfs-http-client");
 
 module.exports = {
   post: async (req, res) => {
@@ -9,13 +8,14 @@ module.exports = {
     // TODO( ) : ipfs 라이브러리 사용해서 req.files로 넘어온 이미지 데이터 ipfs 에 업로드
     // TODO( ) : req.files로 받은 image를 ipfs.add로 ipfs에 올리기 - 이후 다시 imageUrl로 반환
 
+    /**---------------------------------ipfs 프론트-------------------------------- */
+
     // 모든 것 세션 유지
 
     const imageUrl = req.file.location;
     const { account, tokenId, name, desc } = req.body;
-    const ipfs = create(new URL("http://52.78.7.31:5001"));
-    const file = await ipfs.add(urlSource(imageUrl));
-    console.log(file);
+
+    console.log(imageUrl);
 
     try {
       //TODO(v) NFT 데이터들을 DATABASE에 저장하는 코드 작성 -- 민팅
