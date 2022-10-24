@@ -3,13 +3,17 @@ import "../assets/MintingPage.css";
 import BlankImage from "../assets/img/uploadImage.png";
 import axios from "axios";
 
+//
+
 const MintingPage = () => {
   //input 값 상태관리
+
   const [metadata, setMetadata] = useState({
     name: "",
     desc: "",
   });
   const account = localStorage.getItem("userId");
+
   // const { name, desc, src } = metadata;
 
   const onChange = (e) => {
@@ -31,6 +35,7 @@ const MintingPage = () => {
   const uploadImage = async (e) => {
     //📌이미지 미리보기를 위한 url 및 img 상태관리
     const url = URL.createObjectURL(e.target.files[0]);
+
     setImgFile(url);
 
     //📌위와 별도로 이미지 formdata로 데이터 넘겨주는 작업

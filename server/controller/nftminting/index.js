@@ -1,16 +1,22 @@
 const User = require("../../models/User");
 const NftMeta = require("../../models/NftMeta");
+// const { urlToBuffer } = require("./imageBuffer");
 
 module.exports = {
   post: async (req, res) => {
     // TODO( ) :imageURL req.files로 받아올 수 있게 프론트 formData 요청
     // TODO( ) : ipfs 라이브러리 사용해서 req.files로 넘어온 이미지 데이터 ipfs 에 업로드
-    // TODO( ) : req.files로 받은 image를 ipfs.add로 ipfs에 올리기
+    // TODO( ) : req.files로 받은 image를 ipfs.add로 ipfs에 올리기 - 이후 다시 imageUrl로 반환
+
+    /**---------------------------------ipfs 프론트-------------------------------- */
 
     // 모든 것 세션 유지
 
-    req.file;
-    const { account, tokenId, imageUrl, name, desc } = req.body;
+    const imageUrl = req.file.location;
+    const { account, tokenId, name, desc } = req.body;
+
+    console.log(imageUrl);
+
     try {
       //TODO(v) NFT 데이터들을 DATABASE에 저장하는 코드 작성 -- 민팅
 
@@ -19,7 +25,7 @@ module.exports = {
         if (wallet) {
           newToken = {
             tokenId: tokenId,
-            imageUrl: imageUrl,
+            // imageUrl: imageUrl,
             name: name,
             description: desc,
           };
@@ -35,7 +41,7 @@ module.exports = {
           );
           NftMeta.create({
             tokenId: tokenId,
-            imageUrl: imageUrl,
+            // imageUrl: imageUrl,
             name: name,
             description: desc,
           });
@@ -47,7 +53,7 @@ module.exports = {
             tokenList: [
               {
                 tokenId: tokenId,
-                imageUrl: imageUrl,
+                // imageUrl: imageUrl,
                 name: name,
                 description: desc,
               },
@@ -56,7 +62,7 @@ module.exports = {
           //TODO(v) : 새로 민팅시 메타데이터 스키마에 저장
           NftMeta.create({
             tokenId: tokenId,
-            imageUrl: imageUrl,
+            // imageUrl: imageUrl,
             name: name,
             description: desc,
           });
