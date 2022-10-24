@@ -87,6 +87,7 @@ const Profile = ({account, web3}) => {
   }
   */
   const [NFTs, setNFTs] = React.useState(NFTdata);
+  const userId = localStorage.getItem("userId");
 
   return (
     <div className="Conect-wallet">
@@ -99,7 +100,7 @@ const Profile = ({account, web3}) => {
             className="profile-header-2-image"
             src="https://static.opensea.io/general/ETH.svg"
           />
-          Ox10KnockSea...
+          {userId}
         </div>
       </div>
 

@@ -6,9 +6,11 @@ module.exports = {
     // TODO( ) :imageURL req.files로 받아올 수 있게 프론트 formData 요청
     // TODO( ) : ipfs 라이브러리 사용해서 req.files로 넘어온 이미지 데이터 ipfs 에 업로드
     // TODO( ) : req.files로 받은 image를 ipfs.add로 ipfs에 올리기
-    // TODO( ) : 지갑의 종류도 req.body로 받아오기
+
     // 모든 것 세션 유지
-    const { account, tokenId, imageUrl, name, description } = req.body;
+
+    req.file;
+    const { account, tokenId, imageUrl, name, desc } = req.body;
     try {
       //TODO(v) NFT 데이터들을 DATABASE에 저장하는 코드 작성 -- 민팅
 
@@ -19,7 +21,7 @@ module.exports = {
             tokenId: tokenId,
             imageUrl: imageUrl,
             name: name,
-            description: description,
+            description: desc,
           };
           User.updateOne(
             { tokenId: wallet.tokenId },
@@ -29,16 +31,13 @@ module.exports = {
             (err, result) => {
               if (err) console.log(err);
               //TODO(v): 사용자 민팅시 metaData 스키마로 저장하도록 코드 작성
-              return res
-                .status(200)
-                .json({ success: true, message: "추가 완료." });
             }
           );
           NftMeta.create({
             tokenId: tokenId,
             imageUrl: imageUrl,
             name: name,
-            description: description,
+            description: desc,
           });
 
           //지갑에 토큰을 가지고 있지 않는 경우, 새로 토큰을 얻을 때,
@@ -50,7 +49,7 @@ module.exports = {
                 tokenId: tokenId,
                 imageUrl: imageUrl,
                 name: name,
-                description: description,
+                description: desc,
               },
             ],
           });
@@ -59,10 +58,10 @@ module.exports = {
             tokenId: tokenId,
             imageUrl: imageUrl,
             name: name,
-            description: description,
+            description: desc,
           });
-          return res.status(200).json({ success: true, message: "생성 완료." });
         }
+        return res.status(200).json({ success: true, message: "생성 완료." });
       });
     } catch (err) {
       console.log(err);

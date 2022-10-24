@@ -11,9 +11,17 @@ function Nav() {
   useEffect(() => {
     if (account && active) {
       axios
-        .post("http://localhost:5000/users/login", { account, active })
+        .post(
+          "http://localhost:5000/users/login",
+          { account, active },
+          {
+            "Content-Type": "application/json",
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           console.log(response);
+          localStorage.setItem("userId", account);
         });
     }
   }, [account, active]);
@@ -38,14 +46,23 @@ function Nav() {
   };
 
   //로그아웃
-  const onClickDisConnect = () => {
+  const onClickDisConnect = async () => {
     setAccount(account === "");
-    axios.get("http://localhost:5000/users/logout").then((response) => {
-      console.log(response);
-      if (response.data.success) {
-        setActive(false);
-      }
-    });
+    await axios
+      .post(
+        "http://localhost:5000/users/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.data.success) {
+          setActive(false);
+          localStorage.removeItem("userId");
+        }
+      });
   };
 
   return (
