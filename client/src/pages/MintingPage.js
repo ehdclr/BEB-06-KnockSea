@@ -12,6 +12,7 @@ const MintingPage = () => {
     name: "",
     desc: "",
   });
+
   const account = localStorage.getItem("userId");
 
   // const { name, desc, src } = metadata;
@@ -23,6 +24,9 @@ const MintingPage = () => {
       [name]: value,
     });
   };
+
+  //이미지 파일 넘기기 formdata
+  const [image, setImage] = useState({});
 
   //img 관리
   const [imgFile, setImgFile] = useState({});
@@ -39,16 +43,8 @@ const MintingPage = () => {
     setImgFile(url);
 
     //📌위와 별도로 이미지 formdata로 데이터 넘겨주는 작업
-    const formData = new FormData();
-    formData.append("src", e.target.files[0]);
-    var options = { content: formData };
-
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    // const formData = new FormData();
+    setImage(e.target.files[0]);
   };
 
   //이미지 미리보기 부분
@@ -64,25 +60,30 @@ const MintingPage = () => {
   //create 버튼 클릭
   const createHandler = (e) => {
     let formData = new FormData();
-    formData.append("file", imgFile);
-    console.log("이미지파일", imgFile);
-    console.log(metadata);
-    console.log(formData);
-    //여기서 formData처리와 axios 처리를 해야함
-    let body = {
-      ...metadata,
-      account,
-    };
 
-    // axios
-    //   .post(
-    //     "http://localhost:5000/users/minting",
-    //     { formData, body },
-    //     { withCredentials: true }
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //   });
+    formData.append("file", image);
+    formData.append("name", metadata.name);
+    formData.append("desc", metadata.desc);
+    formData.append("account", account);
+
+    //❗❗여기서 formData처리와 axios 처리를 해야함
+
+    axios
+      .post(
+        "http://localhost:5000/users/minting",
+
+        formData,
+
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   return (

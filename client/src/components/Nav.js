@@ -114,7 +114,7 @@ function Nav() {
         </Link>
 
         <div>
-          {button ? (
+          {account ? (
             <div>
               <button
                 className="disconnectedButton"
