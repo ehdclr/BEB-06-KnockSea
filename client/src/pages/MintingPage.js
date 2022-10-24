@@ -34,7 +34,6 @@ const MintingPage = () => {
   };
 
   const uploadImage = (e) => {
-    e.preventDefault();
     const url = URL.createObjectURL(e.target.files[0]);
 
     setImgFile(url);
