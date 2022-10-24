@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo } from "react";
+import axios from "axios";
 import "../assets/MintingPage.css";
 import BlankImage from "../assets/img/uploadImage.png";
 
@@ -7,10 +8,7 @@ const MintingPage = () => {
   const [metadata, setMetadata] = useState({
     name: "",
     desc: "",
-    src: "",
   });
-
-  // const { name, desc, src } = metadata;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -20,25 +18,33 @@ const MintingPage = () => {
     });
   };
 
-  //img 상태관리
+  //img 관리
   const [imgFile, setImgFile] = useState({});
   const fileInputRef = useRef(null);
 
   const handleClickFileInput = (e) => {
     fileInputRef.current.click();
-    console.log(imgFile);
   };
 
-  const uploadImage = (e) => {
+  const uploadImage = async (e) => {
+    //📌이미지 미리보기를 위한 url 및 img 상태관리
     const url = URL.createObjectURL(e.target.files[0]);
     setImgFile(url);
-    setMetadata({
-      ...metadata,
-      src: url,
-    });
-    console.log(metadata);
+
+    //📌위와 별도로 이미지 formdata로 데이터 넘겨주는 작업
+    const formData = new FormData();
+    formData.append("src", e.target.files[0]);
+    var options = { content: formData };
+
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
+    for (let value of formData.values()) {
+      console.log(value);
+    }
   };
 
+  //이미지 미리보기 부분
   const showImage = useMemo(() => {
     if (Object.keys(imgFile).length === 0) {
       return <img className="image" src={BlankImage} width="300px" />;
